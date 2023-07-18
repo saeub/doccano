@@ -10377,7 +10377,7 @@ range-parser@^1.2.1, range-parser@~1.2.1:
   version "2.2.0-c"
   resolved "https://github.com/nhn/raphael.git#78a6ed3ec269f33b6457b0ec66f8c3d1f2ed70e0"
   dependencies:
-    eve "https://github.com/adobe-webplatform/eve.git#eef80ed"
+    eve "git://github.com/adobe-webplatform/eve.git#eef80ed"
 
 raw-loader@^4.0.2:
   version "4.0.2"
@@ -12190,15 +12190,21 @@ uuid@^8.3.2:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
 
-v-annotator@0.1.28:
-  version "0.1.28"
-  resolved "https://registry.yarnpkg.com/v-annotator/-/v-annotator-0.1.28.tgz#7a2c6de98d5e71d36999afccb0fb183a35d70290"
-  integrity sha512-w/pMXuJgErdCli8QnTN+Ntpvix6efuIFyDr2KKKApD9+gFLZXY5awVjPdkIm/WN6kBIPYRIL9xkWzsqzBF1hQw==
+uuid@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-9.0.0.tgz#592f550650024a38ceb0c562f2f6aa435761efb5"
+  integrity sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==
+
+v-annotator@0.1.30:
+  version "0.1.30"
+  resolved "https://registry.yarnpkg.com/v-annotator/-/v-annotator-0.1.30.tgz#930d7b2bd6d16520c8567a3bb6454c741a4764d5"
+  integrity sha512-PDfbiC1bfr5sJ+pSHrC0dwG82rJ5z/ObBB0x4zVXSYW4AD6JeNWgk9DkchM0rSBMuvr+whP6IEvDY5/XsrZmfw==
   dependencies:
     "@flatten-js/interval-tree" "^1.0.14"
     core-js "^3.6.5"
     grapheme-splitter "^1.0.4"
     lodash-es "^4.17.21"
+    uuid "^9.0.0"
     vue "^2.6.11"
     vue-virtual-scroller "^1.0.10"
 
