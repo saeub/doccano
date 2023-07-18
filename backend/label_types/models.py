@@ -76,3 +76,14 @@ class RelationType(LabelType):
     @property
     def labels(self):
         return RelationType.objects.filter(project=self.project)
+
+
+class RatingType(LabelType):
+    min = models.FloatField(default=1)
+    max = models.FloatField(default=5)
+    step = models.FloatField(default=1)
+    ticks = models.TextField(blank=True)
+
+    @property
+    def labels(self):
+        return RatingType.objects.filter(project=self.project)

@@ -27,6 +27,46 @@
           </v-col>
         </v-row>
 
+        <v-row v-if="type === 'rating'">
+          <v-col cols="12" sm="4">
+            <v-text-field
+              :value="min"
+              label="Minimum score"
+              type="number"
+              outlined
+              required
+              @input="$emit('update:min', $event)"
+            />
+          </v-col>
+          <v-col cols="12" sm="4">
+            <v-text-field
+              :value="max"
+              label="Maximum score"
+              type="number"
+              outlined
+              required
+              @input="$emit('update:max', $event)"
+            />
+          </v-col>
+          <v-col cols="12" sm="4">
+            <v-text-field
+              :value="step"
+              label="Step"
+              type="number"
+              outlined
+              required
+              @input="$emit('update:step', $event)"
+            />
+          </v-col>
+          <v-col cols="12">
+            <v-text-field
+              :value="ticks"
+              label="Ticks"
+              @input="$emit('update:ticks', $event)"
+            />
+          </v-col>
+        </v-row>
+
         <v-row>
           <v-col cols="12" sm="12">
             <v-text-field
@@ -62,7 +102,16 @@
         <v-row>
           <v-col>
             <div class="title black--text mb-2">Preview</div>
-            <v-chip :color="backgroundColor" :text-color="textColor">
+            <v-slider
+              v-if="type === 'rating'"
+              :color="backgroundColor"
+              :track-color="backgroundColor"
+              :max="max"
+              :min="min"
+              :step="step"
+              :tick-labels="ticks.split(',')"
+            />
+            <v-chip v-else :color="backgroundColor" :text-color="textColor">
               {{ text }}
               <v-avatar v-if="suffixKey" right color="white" class="black--text font-weight-bold">
                 {{ suffixKey }}
@@ -98,6 +147,10 @@ export default Vue.extend({
       type: Number as () => number | undefined,
       default: undefined
     },
+    type: {
+      type: String as () => 'category' | 'span' | 'relation' | 'rating',
+      required: true
+    },
     text: {
       type: String,
       required: true
@@ -109,6 +162,22 @@ export default Vue.extend({
     suffixKey: {
       type: String as () => string | null,
       default: null
+    },
+    min: {
+      type: Number,
+      required: true
+    },
+    max: {
+      type: Number,
+      required: true
+    },
+    step: {
+      type: Number,
+      required: true
+    },
+    ticks: {
+      type: String,
+      required: true
     }
   },
 

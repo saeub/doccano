@@ -3,6 +3,7 @@ export class Span {
     readonly id: number,
     private _label: number,
     readonly user: number,
+    readonly parallelText: number,
     readonly startOffset: number,
     readonly endOffset: number
   ) {}

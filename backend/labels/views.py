@@ -12,6 +12,7 @@ from .serializers import (
     BoundingBoxSerializer,
     CategorySerializer,
     RelationSerializer,
+    RatingSerializer,
     SegmentationSerializer,
     SpanSerializer,
     TextLabelSerializer,
@@ -21,6 +22,7 @@ from labels.models import (
     Category,
     Label,
     Relation,
+    Rating,
     Segmentation,
     Span,
     TextLabel,
@@ -121,6 +123,16 @@ class RelationList(BaseListAPI):
 class RelationDetail(BaseDetailAPI):
     queryset = Relation.objects.all()
     serializer_class = RelationSerializer
+
+
+class RatingList(BaseListAPI):
+    label_class = Rating
+    serializer_class = RatingSerializer
+
+
+class RatingDetail(BaseDetailAPI):
+    queryset = Rating.objects.all()
+    serializer_class = RatingSerializer
 
 
 class BoundingBoxListAPI(BaseListAPI):

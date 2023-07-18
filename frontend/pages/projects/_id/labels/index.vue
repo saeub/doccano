@@ -8,6 +8,7 @@
       <template v-else>
         <v-tab class="text-capitalize">Span</v-tab>
         <v-tab class="text-capitalize">Relation</v-tab>
+        <v-tab class="text-capitalize">Rating</v-tab>
       </template>
     </v-tabs>
     <v-card-title>
@@ -107,7 +108,8 @@ export default Vue.extend({
 
     hasMultiType(): boolean {
       if ('projectType' in this.project) {
-        return this.isIntentDetectionAndSlotFilling || !!this.project.useRelation
+        return (this.isIntentDetectionAndSlotFilling || !!this.project.useRelation
+        || !!this.project.useRating)
       } else {
         return false
       }
@@ -122,7 +124,7 @@ export default Vue.extend({
         if (this.isIntentDetectionAndSlotFilling) {
           return ['category', 'span'][this.tab!]
         } else {
-          return ['span', 'relation'][this.tab!]
+          return ['span', 'relation', 'rating'][this.tab!]
         }
       } else if (this.project.canDefineCategory) {
         return 'category'
@@ -139,7 +141,8 @@ export default Vue.extend({
         if (this.isIntentDetectionAndSlotFilling) {
           return [this.$services.categoryType, this.$services.spanType][this.tab!]
         } else {
-          return [this.$services.spanType, this.$services.relationType][this.tab!]
+          return [this.$services.spanType, this.$services.relationType,
+          this.$services.ratingType][this.tab!]
         }
       } else if (this.project.canDefineCategory) {
         return this.$services.categoryType

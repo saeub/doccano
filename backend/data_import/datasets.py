@@ -119,6 +119,13 @@ class SequenceLabelingDataset(DatasetWithSingleLabelType):
     labels_class = Spans
 
 
+class ParallelSequenceLabelingDataset(DatasetWithSingleLabelType):
+    data_class = TextData
+    label_class = SpanLabel
+    label_type = SpanType
+    labels_class = Spans
+
+
 class Seq2seqDataset(DatasetWithSingleLabelType):
     data_class = TextData
     label_class = TextLabel
@@ -206,6 +213,7 @@ def select_dataset(project: Project, task: str, file_format: Format) -> Type[Dat
     mapping = {
         ProjectType.DOCUMENT_CLASSIFICATION: TextClassificationDataset,
         ProjectType.SEQUENCE_LABELING: SequenceLabelingDataset,
+        ProjectType.PARALLEL_SEQUENCE_LABELING: ParallelSequenceLabelingDataset,
         RELATION_EXTRACTION: RelationExtractionDataset,
         ProjectType.SEQ2SEQ: Seq2seqDataset,
         ProjectType.INTENT_DETECTION_AND_SLOT_FILLING: CategoryAndSpanDataset,

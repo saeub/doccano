@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
-from .models import CategoryType, LabelType, RelationType, SpanType
+from .models import CategoryType, LabelType, RelationType, RatingType, SpanType
 
 
 class LabelSerializer(serializers.ModelSerializer):
@@ -67,3 +67,9 @@ class RelationTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = RelationType
         fields = LabelSerializer.Meta.fields
+
+
+class RatingTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RatingType
+        fields = LabelSerializer.Meta.fields + ("min", "max", "step", "ticks")

@@ -7,6 +7,7 @@ export const getLinkToAnnotationPage = (
   const mapping = {
     DocumentClassification: 'text-classification',
     SequenceLabeling: 'sequence-labeling',
+    ParallelSequenceLabeling: 'parallel-sequence-labeling',
     Seq2seq: 'sequence-to-sequence',
     IntentDetectionAndSlotFilling: 'intent-detection-and-slot-filling',
     ImageClassification: 'image-classification',

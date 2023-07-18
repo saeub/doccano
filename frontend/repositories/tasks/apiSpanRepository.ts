@@ -5,7 +5,14 @@ export class APISpanRepository extends AnnotationRepository<Span> {
   labelName = 'spans'
 
   toModel(item: { [key: string]: any }): Span {
-    return new Span(item.id, item.label, item.user, item.start_offset, item.end_offset)
+    return new Span(
+      item.id,
+      item.label,
+      item.user,
+      item.parallel_text,
+      item.start_offset,
+      item.end_offset
+    )
   }
 
   toPayload(item: Span): { [key: string]: any } {
@@ -13,6 +20,7 @@ export class APISpanRepository extends AnnotationRepository<Span> {
       id: item.id,
       label: item.label,
       user: item.user,
+      parallel_text: item.parallelText,
       start_offset: item.startOffset,
       end_offset: item.endOffset
     }

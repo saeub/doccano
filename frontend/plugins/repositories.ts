@@ -23,6 +23,7 @@ import { APICatalogRepository } from '@/repositories/upload/apiCatalogRepository
 import { APIParseRepository } from '@/repositories/upload/apiParseRepository'
 import { APIUserRepository } from '@/repositories/user/apiUserRepository'
 import { APISegmentationRepository } from '~/repositories/tasks/apiSegmentationRepository'
+import { APIRatingRepository } from '~/repositories/tasks/apiRatingRepository'
 
 export interface Repositories {
   // User
@@ -58,11 +59,13 @@ export interface Repositories {
   categoryType: APILabelRepository
   spanType: APILabelRepository
   relationType: APILabelRepository
+  ratingType: APILabelRepository
 
   // Label
   category: APICategoryRepository
   span: APISpanRepository
   relation: APIRelationRepository
+  rating: APIRatingRepository
   textLabel: APITextLabelRepository
   boundingBox: APIBoundingBoxRepository
   segmentation: APISegmentationRepository
@@ -108,11 +111,13 @@ const repositories: Repositories = {
   categoryType: new APILabelRepository('category-type'),
   spanType: new APILabelRepository('span-type'),
   relationType: new APILabelRepository('relation-type'),
+  ratingType: new APILabelRepository('rating-type'),
 
   // Label
   category: new APICategoryRepository(),
   span: new APISpanRepository(),
   relation: new APIRelationRepository(),
+  rating: new APIRatingRepository(),
   textLabel: new APITextLabelRepository(),
   boundingBox: new APIBoundingBoxRepository(),
   segmentation: new APISegmentationRepository()

@@ -7,6 +7,8 @@ from .views import (
     CategoryListAPI,
     RelationDetail,
     RelationList,
+    RatingDetail,
+    RatingList,
     SegmentationDetailAPI,
     SegmentationListAPI,
     SpanDetailAPI,
@@ -21,6 +23,12 @@ urlpatterns = [
         route="examples/<int:example_id>/relations/<int:annotation_id>",
         view=RelationDetail.as_view(),
         name="relation_detail",
+    ),
+    path(route="examples/<int:example_id>/ratings", view=RatingList.as_view(), name="rating_list"),
+    path(
+        route="examples/<int:example_id>/ratings/<int:annotation_id>",
+        view=RatingDetail.as_view(),
+        name="rating_detail",
     ),
     path(route="examples/<int:example_id>/categories", view=CategoryListAPI.as_view(), name="category_list"),
     path(

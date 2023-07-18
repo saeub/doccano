@@ -57,6 +57,7 @@ export default Vue.extend({
       return {
         DocumentClassification: 'Category',
         SequenceLabeling: 'Span',
+        ParallelSequenceLabeling: 'Span',
         Seq2seq: 'Text',
         ImageClassification: 'Category',
         Speech2text: 'Text'

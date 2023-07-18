@@ -1,5 +1,5 @@
 <template>
-  <form-create v-slot="slotProps" v-bind.sync="editedItem" :items="items">
+  <form-create v-slot="slotProps" v-bind.sync="editedItem" :items="items" :type="type">
     <v-btn :disabled="!slotProps.valid" color="primary" class="text-capitalize" @click="save">
       Save
     </v-btn>
@@ -32,7 +32,7 @@ export default Vue.extend({
   middleware: ['check-auth', 'auth', 'setCurrentProject'],
 
   validate({ params, query, store }) {
-    if (!['category', 'span', 'relation'].includes(query.type as string)) {
+    if (!['category', 'span', 'relation', 'rating'].includes(query.type as string)) {
       return false
     }
     if (/^\d+$/.test(params.id)) {
@@ -49,14 +49,22 @@ export default Vue.extend({
         prefixKey: null,
         suffixKey: null,
         backgroundColor: '#73D8FF',
-        textColor: '#ffffff'
+        textColor: '#ffffff',
+        min: 1,
+        max: 5,
+        step: 1,
+        ticks: ''
       } as LabelDTO,
       defaultItem: {
         text: '',
         prefixKey: null,
         suffixKey: null,
         backgroundColor: '#73D8FF',
-        textColor: '#ffffff'
+        textColor: '#ffffff',
+        min: 1,
+        max: 5,
+        step: 1,
+        ticks: ''
       } as LabelDTO,
       items: [] as LabelDTO[]
     }
@@ -67,14 +75,22 @@ export default Vue.extend({
       return this.$route.params.id
     },
 
+    type(): string {
+      return this.$route.query.type as string
+    },
+
     service(): any {
       const type = this.$route.query.type
       if (type === 'category') {
         return this.$services.categoryType
       } else if (type === 'span') {
         return this.$services.spanType
-      } else {
+      } else if (type === 'relation') {
         return this.$services.relationType
+      } else if (type === 'rating') {
+        return this.$services.ratingType
+      } else {
+        throw new Error('Unknown type')
       }
     }
   },

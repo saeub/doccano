@@ -54,6 +54,7 @@ export default Vue.extend({
       return [
         'text_classification.png',
         'sequence_labeling.png',
+        'parallel_sequence_labeling.png',
         'seq2seq.png',
         'intent_detection.png',
         'image_classification.png',

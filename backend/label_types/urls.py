@@ -7,6 +7,9 @@ from .views import (
     RelationTypeDetail,
     RelationTypeList,
     RelationTypeUploadAPI,
+    RatingTypeDetail,
+    RatingTypeList,
+    RatingTypeUploadAPI,
     SpanTypeDetail,
     SpanTypeList,
     SpanTypeUploadAPI,
@@ -22,4 +25,7 @@ urlpatterns = [
     path(route="relation-type-upload", view=RelationTypeUploadAPI.as_view(), name="relation_type-upload"),
     path(route="relation-types", view=RelationTypeList.as_view(), name="relation_types_list"),
     path(route="relation-types/<int:label_id>", view=RelationTypeDetail.as_view(), name="relation_type_detail"),
+    path(route="rating-type-upload", view=RatingTypeUploadAPI.as_view(), name="rating_type-upload"),
+    path(route="rating-types", view=RatingTypeList.as_view(), name="rating_types_list"),
+    path(route="rating-types/<int:label_id>", view=RatingTypeDetail.as_view(), name="rating_type_detail"),
 ]

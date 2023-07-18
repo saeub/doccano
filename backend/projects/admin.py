@@ -9,6 +9,7 @@ from .models import (
     SegmentationProject,
     Seq2seqProject,
     SequenceLabelingProject,
+    ParallelSequenceLabelingProject,
     Tag,
     TextClassificationProject,
 )
@@ -46,6 +47,7 @@ admin.site.register(Member, MemberAdmin)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(TextClassificationProject, ProjectAdmin)
 admin.site.register(SequenceLabelingProject, ProjectAdmin)
+admin.site.register(ParallelSequenceLabelingProject, ProjectAdmin)
 admin.site.register(Seq2seqProject, ProjectAdmin)
 admin.site.register(BoundingBoxProject, ProjectAdmin)
 admin.site.register(SegmentationProject, ProjectAdmin)

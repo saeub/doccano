@@ -4,6 +4,7 @@ export default {
   projectType: 'Projekttyp',
   textClassification: 'Textklassifikation',
   sequenceLabeling: 'Sequenz-Labeling',
+  parallelSequenceLabeling: 'Paralleles Sequenz-Labeling',
   sequenceToSequence: 'Sequenz zu Sequenz',
   randomizeDocOrder: 'Dokumentenreihenfolge zufällig wählen',
   shareAnnotations: 'Gemeinsame Annotationen für Nutzer',
@@ -14,6 +15,7 @@ export default {
   projectTypes: [
     'Textklassifikation',
     'Sequenz-Labeling',
+    'Paralleles Sequenz-Labeling',
     'Sequenz zu Sequenz',
     'Intent-Erkennung und Slot-Füllung',
     'Bildklassifikation',

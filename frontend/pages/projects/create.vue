@@ -26,6 +26,7 @@
             contain
           />
           <v-checkbox v-model="editedItem.useRelation" label="Use relation labeling" />
+          <v-checkbox v-model="editedItem.useRating" label="Use ratings" />
           <v-checkbox v-model="editedItem.enableGraphemeMode">
             <template #label>
               <div>
@@ -78,6 +79,7 @@ import {
   DocumentClassification,
   ImageClassification,
   SequenceLabeling,
+  ParallelSequenceLabeling,
   canDefineLabel
 } from '~/domain/models/project/project'
 
@@ -92,6 +94,7 @@ const initializeProject = () => {
     allowOverlappingSpans: false,
     enableGraphemeMode: false,
     useRelation: false,
+    useRating: false,
     tags: [] as string[],
     guideline: '',
     allowMemberToCreateLabelType: false
@@ -124,7 +127,8 @@ export default Vue.extend({
       return [DocumentClassification, ImageClassification].includes(this.editedItem.projectType)
     },
     isSequenceLabelingProject(): boolean {
-      return this.editedItem.projectType === SequenceLabeling
+      return (this.editedItem.projectType === SequenceLabeling
+        || this.editedItem.projectType === ParallelSequenceLabeling)
     },
     _canDefineLabel(): boolean {
       return canDefineLabel(this.editedItem.projectType as any)

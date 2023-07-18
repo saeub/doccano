@@ -55,6 +55,7 @@ def make_project(task: str, users: List[str], roles: List[str], collaborative_an
     project_model = {
         ProjectType.DOCUMENT_CLASSIFICATION: "TextClassificationProject",
         ProjectType.SEQUENCE_LABELING: "SequenceLabelingProject",
+        ProjectType.PARALLEL_SEQUENCE_LABELING: "ParallelSequenceLabelingProject",
         ProjectType.SEQ2SEQ: "Seq2seqProject",
         ProjectType.SPEECH2TEXT: "Speech2TextProject",
         ProjectType.IMAGE_CLASSIFICATION: "ImageClassificationProject",

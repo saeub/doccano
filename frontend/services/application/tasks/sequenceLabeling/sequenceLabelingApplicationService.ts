@@ -3,13 +3,16 @@ import { RelationDTO } from './relationData'
 import { SpanDTO } from './sequenceLabelingData'
 import { APISpanRepository } from '@/repositories/tasks/apiSpanRepository'
 import { APIRelationRepository } from '@/repositories/tasks/apiRelationRepository'
+import { APIRatingRepository } from '@/repositories/tasks/apiRatingRepository'
 import { Span } from '@/domain/models/tasks/span'
 import { Relation } from '@/domain/models/tasks/relation'
+import { Rating } from '@/domain/models/tasks/rating'
 
 export class SequenceLabelingApplicationService extends AnnotationApplicationService<Span> {
   constructor(
     readonly repository: APISpanRepository,
-    readonly relationRepository: APIRelationRepository
+    readonly relationRepository: APIRelationRepository,
+    readonly ratingRepository: APIRatingRepository
   ) {
     super(new APISpanRepository())
   }
@@ -23,10 +26,11 @@ export class SequenceLabelingApplicationService extends AnnotationApplicationSer
     projectId: string,
     exampleId: number,
     labelId: number,
+    parallelText: number,
     startOffset: number,
     endOffset: number
   ): Promise<void> {
-    const item = new Span(0, labelId, 0, startOffset, endOffset)
+    const item = new Span(0, labelId, 0, parallelText, startOffset, endOffset)
     try {
       await this.repository.create(projectId, exampleId, item)
     } catch (e: any) {
@@ -82,5 +86,39 @@ export class SequenceLabelingApplicationService extends AnnotationApplicationSer
     const relation = await this.relationRepository.find(projectId, exampleId, relationId)
     relation.changeType(typeId)
     await this.relationRepository.update(projectId, exampleId, relationId, relation)
+  }
+
+  public async listRatings(projectId: string, exampleId: number): Promise<Rating[]> {
+    const items = await this.ratingRepository.list(projectId, exampleId)
+    return items
+  }
+
+  public async createRating(
+    projectId: string,
+    exampleId: number,
+    type: number,
+    score: number
+  ): Promise<void> {
+    const rating = new Rating(0, type, score)
+    await this.ratingRepository.create(projectId, exampleId, rating)
+  }
+
+  public async deleteRating(
+    projectId: string,
+    exampleId: number,
+    ratingId: number
+  ): Promise<void> {
+    await this.ratingRepository.delete(projectId, exampleId, ratingId)
+  }
+
+  public async updateRating(
+    projectId: string,
+    exampleId: number,
+    ratingId: number,
+    score: number
+  ): Promise<void> {
+    const rating = await this.ratingRepository.find(projectId, exampleId, ratingId)
+    rating.changeScore(score)
+    await this.ratingRepository.update(projectId, exampleId, ratingId, rating)
   }
 }

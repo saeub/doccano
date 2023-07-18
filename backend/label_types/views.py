@@ -12,11 +12,12 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .exceptions import LabelValidationError
-from .models import CategoryType, LabelType, RelationType, SpanType
+from .models import CategoryType, LabelType, RelationType, RatingType, SpanType
 from .serializers import (
     CategoryTypeSerializer,
     LabelSerializer,
     RelationTypeSerializer,
+    RatingTypeSerializer,
     SpanTypeSerializer,
 )
 from projects.models import Project
@@ -98,6 +99,18 @@ class RelationTypeDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated & (IsProjectAdmin | IsProjectStaffAndReadOnly)]
 
 
+class RatingTypeList(LabelList):
+    model = RatingType
+    serializer_class = RatingTypeSerializer
+
+
+class RatingTypeDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = RatingType.objects.all()
+    serializer_class = RatingTypeSerializer
+    lookup_url_kwarg = "label_id"
+    permission_classes = [IsAuthenticated & (IsProjectAdmin | IsProjectStaffAndReadOnly)]
+
+
 class LabelUploadAPI(APIView):
     parser_classes = (MultiPartParser,)
     permission_classes = [IsAuthenticated & IsProjectAdmin]
@@ -130,3 +143,7 @@ class SpanTypeUploadAPI(LabelUploadAPI):
 
 class RelationTypeUploadAPI(LabelUploadAPI):
     serializer_class = RelationTypeSerializer
+
+
+class RatingTypeUploadAPI(LabelUploadAPI):
+    serializer_class = RatingTypeSerializer

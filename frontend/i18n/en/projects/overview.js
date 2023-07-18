@@ -4,6 +4,7 @@ export default {
   projectType: 'Project type',
   textClassification: 'Text Classification',
   sequenceLabeling: 'Sequence Labeling',
+  parallelSequenceLabeling: 'Parallel Sequence Labeling',
   sequenceToSequence: 'Sequence to sequence',
   allowSingleLabel: 'Allow single label',
   randomizeDocOrder: 'Randomize document order',
@@ -15,6 +16,7 @@ export default {
   projectTypes: [
     'Text Classification',
     'Sequence Labeling',
+    'Parallel Sequence Labeling',
     'Sequence to sequence',
     'Intent Detection and Slot Filling',
     'Image Classification',

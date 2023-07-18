@@ -14,6 +14,7 @@ EXAMPLE_DIR = Path(__file__).parent.resolve() / "examples"
 TASK_AGNOSTIC_DIR = EXAMPLE_DIR / "task_agnostic"
 TEXT_CLASSIFICATION_DIR = EXAMPLE_DIR / "text_classification"
 SEQUENCE_LABELING_DIR = EXAMPLE_DIR / "sequence_labeling"
+PARALLEL_SEQUENCE_LABELING_DIR = EXAMPLE_DIR / "parallel_sequence_labeling"
 RELATION_EXTRACTION_DIR = EXAMPLE_DIR / "relation_extraction"
 SEQ2SEQ_DIR = EXAMPLE_DIR / "sequence_to_sequence"
 INTENT_DETECTION_DIR = EXAMPLE_DIR / "intent_detection"
@@ -367,6 +368,15 @@ Options.register(
         file_format=CoNLL,
         arg=ArgCoNLL,
         file=SEQUENCE_LABELING_DIR / "example.txt",
+    )
+)
+Options.register(
+    Option(
+        display_name=JSONL.name,
+        task_id=ProjectType.PARALLEL_SEQUENCE_LABELING,
+        file_format=JSONL,
+        arg=ArgColumn,
+        file=PARALLEL_SEQUENCE_LABELING_DIR / "example.jsonl",
     )
 )
 

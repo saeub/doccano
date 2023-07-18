@@ -1,4 +1,5 @@
 import uuid
+import json
 
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
@@ -12,9 +13,10 @@ from .managers import (
     SegmentationManager,
     SpanManager,
     TextLabelManager,
+    RatingManager,
 )
 from examples.models import Example
-from label_types.models import CategoryType, RelationType, SpanType
+from label_types.models import CategoryType, RelationType, RatingType, SpanType
 
 
 class Label(models.Model):
@@ -44,10 +46,15 @@ class Span(Label):
     objects = SpanManager()
     example = models.ForeignKey(to=Example, on_delete=models.CASCADE, related_name="spans")
     label = models.ForeignKey(to=SpanType, on_delete=models.CASCADE)
+    parallel_text = models.IntegerField(null=True)
     start_offset = models.IntegerField()
     end_offset = models.IntegerField()
 
     def __str__(self):
+        text = self.example.text
+        if self.parallel_text is not None:
+            parallel_texts = json.loads(text)
+            text = parallel_texts[self.parallel_text]
         text = self.example.text[self.start_offset : self.end_offset]
         return f"({text}, {self.start_offset}, {self.end_offset}, {self.label.text})"
 
@@ -128,6 +135,16 @@ class Relation(Label):
         if not same_example:
             raise ValidationError("You need to label the same example.")
         return super().clean()
+
+
+class Rating(Label):
+    objects = RatingManager()
+    type = models.ForeignKey(RatingType, on_delete=models.CASCADE)
+    score = models.FloatField()
+    example = models.ForeignKey(to=Example, on_delete=models.CASCADE, related_name="ratings")
+
+    class Meta:
+        unique_together = ("example", "user", "type")
 
 
 class BoundingBox(Label):

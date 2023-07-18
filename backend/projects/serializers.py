@@ -11,6 +11,7 @@ from .models import (
     SegmentationProject,
     Seq2seqProject,
     SequenceLabelingProject,
+    ParallelSequenceLabelingProject,
     Speech2textProject,
     Tag,
     TextClassificationProject,
@@ -104,6 +105,12 @@ class SequenceLabelingProjectSerializer(ProjectSerializer):
     class Meta(ProjectSerializer.Meta):
         model = SequenceLabelingProject
         fields = ProjectSerializer.Meta.fields + ["allow_overlapping", "grapheme_mode", "use_relation"]
+
+
+class ParallelSequenceLabelingProjectSerializer(ProjectSerializer):
+    class Meta(ProjectSerializer.Meta):
+        model = ParallelSequenceLabelingProject
+        fields = ProjectSerializer.Meta.fields + ["allow_overlapping", "grapheme_mode", "use_relation", "use_rating"]
 
 
 class Seq2seqProjectSerializer(ProjectSerializer):

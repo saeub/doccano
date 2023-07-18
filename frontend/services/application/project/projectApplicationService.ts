@@ -15,6 +15,7 @@ type ProjectFields = {
   allowOverlappingSpans: boolean
   enableGraphemeMode: boolean
   useRelation: boolean
+  useRating: boolean
   allowMemberToCreateLabelType: boolean
 }
 
@@ -52,6 +53,7 @@ export class ProjectApplicationService {
     allowOverlappingSpans,
     enableGraphemeMode,
     useRelation,
+    useRating,
     tags,
     guideline = '',
     allowMemberToCreateLabelType = false
@@ -68,6 +70,7 @@ export class ProjectApplicationService {
       allowOverlappingSpans,
       enableGraphemeMode,
       useRelation,
+      useRating,
       tags.map((tag) => TagItem.create(tag)),
       allowMemberToCreateLabelType
     )
@@ -90,6 +93,7 @@ export class ProjectApplicationService {
       allowOverlappingSpans,
       enableGraphemeMode,
       useRelation,
+      useRating,
       guideline = '',
       allowMemberToCreateLabelType
     }: Omit<ProjectFields, 'tags'>
@@ -106,6 +110,7 @@ export class ProjectApplicationService {
       allowOverlappingSpans,
       enableGraphemeMode,
       useRelation,
+      useRating,
       [],
       allowMemberToCreateLabelType
     )

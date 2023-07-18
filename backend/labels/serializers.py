@@ -1,8 +1,8 @@
 from rest_framework import serializers
 
-from .models import BoundingBox, Category, Relation, Segmentation, Span, TextLabel
+from .models import BoundingBox, Category, Relation, Rating, Segmentation, Span, TextLabel
 from examples.models import Example
-from label_types.models import CategoryType, RelationType, SpanType
+from label_types.models import CategoryType, RelationType, RatingType, SpanType
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -37,6 +37,7 @@ class SpanSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
             "label",
+            "parallel_text",
             "start_offset",
             "end_offset",
         )
@@ -67,6 +68,16 @@ class RelationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Relation
         fields = ("id", "prob", "user", "example", "created_at", "updated_at", "from_id", "to_id", "type")
+        read_only_fields = ("user",)
+
+
+class RatingSerializer(serializers.ModelSerializer):
+    example = serializers.PrimaryKeyRelatedField(queryset=Example.objects.all())
+    type = serializers.PrimaryKeyRelatedField(queryset=RatingType.objects.all())
+
+    class Meta:
+        model = Rating
+        fields = ("id", "prob", "user", "example", "created_at", "updated_at", "type", "score")
         read_only_fields = ("user",)
 
 

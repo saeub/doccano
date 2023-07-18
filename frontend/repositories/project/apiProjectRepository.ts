@@ -37,6 +37,7 @@ function toModel(item: { [key: string]: any }): Project {
     item.allow_overlapping,
     item.grapheme_mode,
     item.use_relation,
+    item.use_rating,
     item.tags.map((tag: { [key: string]: any }) => new TagItem(tag.id, tag.text, tag.project)),
     item.allow_member_to_create_label_type,
     item.users,
@@ -60,6 +61,7 @@ function toPayload(item: Project): { [key: string]: any } {
     allow_overlapping: item.allowOverlappingSpans,
     grapheme_mode: item.enableGraphemeMode,
     use_relation: item.useRelation,
+    use_rating: item.useRating,
     tags: item.tags,
     allow_member_to_create_label_type: item.allowMemberToCreateLabelType,
     resourcetype: item.resourceType

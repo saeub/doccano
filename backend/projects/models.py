@@ -14,6 +14,7 @@ from roles.models import Role
 class ProjectType(models.TextChoices):
     DOCUMENT_CLASSIFICATION = "DocumentClassification"
     SEQUENCE_LABELING = "SequenceLabeling"
+    PARALLEL_SEQUENCE_LABELING = "ParallelSequenceLabeling"
     SEQ2SEQ = "Seq2seq"
     INTENT_DETECTION_AND_SLOT_FILLING = "IntentDetectionAndSlotFilling"
     SPEECH2TEXT = "Speech2text"
@@ -115,6 +116,17 @@ class SequenceLabelingProject(Project):
     allow_overlapping = models.BooleanField(default=False)
     grapheme_mode = models.BooleanField(default=False)
     use_relation = models.BooleanField(default=False)
+
+    @property
+    def is_text_project(self) -> bool:
+        return True
+
+
+class ParallelSequenceLabelingProject(Project):
+    allow_overlapping = models.BooleanField(default=False)
+    grapheme_mode = models.BooleanField(default=False)
+    use_relation = models.BooleanField(default=False)
+    use_rating = models.BooleanField(default=False)
 
     @property
     def is_text_project(self) -> bool:

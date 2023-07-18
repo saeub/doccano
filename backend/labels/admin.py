@@ -1,10 +1,15 @@
 from django.contrib import admin
 
-from .models import BoundingBox, Category, Segmentation, Span, TextLabel
+from .models import BoundingBox, Category, Segmentation, Span, Rating, TextLabel
 
 
 class SpanAdmin(admin.ModelAdmin):
     list_display = ("example", "label", "start_offset", "user")
+    ordering = ("example",)
+
+
+class RatingAdmin(admin.ModelAdmin):
+    list_display = ("example", "type", "score", "user")
     ordering = ("example",)
 
 
@@ -30,6 +35,7 @@ class SegmentationAdmin(admin.ModelAdmin):
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Span, SpanAdmin)
+admin.site.register(Rating, RatingAdmin)
 admin.site.register(TextLabel, TextLabelAdmin)
 admin.site.register(BoundingBox, BoundingBoxAdmin)
 admin.site.register(Segmentation, SegmentationAdmin)

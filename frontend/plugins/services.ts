@@ -13,6 +13,7 @@ export interface Services {
   categoryType: LabelApplicationService
   spanType: LabelApplicationService
   relationType: LabelApplicationService
+  ratingType: LabelApplicationService
   project: ProjectApplicationService
   example: ExampleApplicationService
   sequenceLabeling: SequenceLabelingApplicationService
@@ -33,11 +34,13 @@ const plugin: Plugin = (_, inject) => {
     categoryType: new LabelApplicationService(repositories.categoryType),
     spanType: new LabelApplicationService(repositories.spanType),
     relationType: new LabelApplicationService(repositories.relationType),
+    ratingType: new LabelApplicationService(repositories.ratingType),
     project: new ProjectApplicationService(repositories.project),
     example: new ExampleApplicationService(repositories.example),
     sequenceLabeling: new SequenceLabelingApplicationService(
       repositories.span,
-      repositories.relation
+      repositories.relation,
+      repositories.rating,
     ),
     option: new OptionApplicationService(repositories.option),
     tag: new TagApplicationService(repositories.tag),

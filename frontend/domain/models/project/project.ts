@@ -2,6 +2,7 @@ import { TagItem } from '~/domain/models/tag/tag'
 
 export const DocumentClassification = 'DocumentClassification'
 export const SequenceLabeling = 'SequenceLabeling'
+export const ParallelSequenceLabeling = 'ParallelSequenceLabeling'
 export const Seq2seq = 'Seq2seq'
 export const IntentDetectionAndSlotFilling = 'IntentDetectionAndSlotFilling'
 export const ImageClassification = 'ImageClassification'
@@ -13,6 +14,7 @@ export const Speech2text = 'Speech2text'
 export const allProjectTypes = <const>[
   DocumentClassification,
   SequenceLabeling,
+  ParallelSequenceLabeling,
   Seq2seq,
   IntentDetectionAndSlotFilling,
   ImageClassification,
@@ -44,7 +46,8 @@ export const canDefineCategory = (projectType: ProjectType): boolean => {
 }
 
 export const canDefineSpan = (projectType: ProjectType): boolean => {
-  return [SequenceLabeling, IntentDetectionAndSlotFilling].includes(projectType)
+  return [SequenceLabeling, ParallelSequenceLabeling,
+    IntentDetectionAndSlotFilling].includes(projectType)
 }
 
 export const canDefineLabel = (projectType: ProjectType): boolean => {
@@ -67,6 +70,7 @@ export class Project {
     readonly allowOverlappingSpans: boolean,
     readonly enableGraphemeMode: boolean,
     readonly useRelation: boolean,
+    readonly useRating: boolean,
     readonly tags: TagItem[],
     readonly allowMemberToCreateLabelType: boolean = false,
     readonly users: number[] = [],
@@ -104,6 +108,7 @@ export class Project {
     allowOverlappingSpans: boolean,
     enableGraphemeMode: boolean,
     useRelation: boolean,
+    useRating: boolean,
     tags: TagItem[],
     allowMemberToCreateLabelType: boolean
   ) {
@@ -119,6 +124,7 @@ export class Project {
       allowOverlappingSpans,
       enableGraphemeMode,
       useRelation,
+      useRating,
       tags,
       allowMemberToCreateLabelType
     )
@@ -140,9 +146,14 @@ export class Project {
     return this.useRelation
   }
 
+  get canDefineRating(): boolean {
+    return this.useRating
+  }
+
   get taskNames(): string[] {
     if (this.projectType === IntentDetectionAndSlotFilling) {
-      return [DocumentClassification, SequenceLabeling]
+      return [DocumentClassification, SequenceLabeling,
+        ParallelSequenceLabeling]
     }
     return [this.projectType]
   }
