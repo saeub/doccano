@@ -22,7 +22,7 @@ export default Vue.extend({
   middleware: ['check-auth', 'auth', 'setCurrentProject', 'isProjectAdmin'],
 
   validate({ params, query, store }) {
-    if (!['category', 'span', 'relation'].includes(query.type as string)) {
+    if (!['category', 'span', 'relation', 'rating'].includes(query.type as string)) {
       return false
     }
     if (/^\d+$/.test(params.id)) {
@@ -60,8 +60,10 @@ export default Vue.extend({
         return this.$services.categoryType
       } else if (type === 'span') {
         return this.$services.spanType
-      } else {
+      } else if (type === 'relation') {
         return this.$services.relationType
+      } else {
+        return this.$services.ratingType
       }
     }
   },
