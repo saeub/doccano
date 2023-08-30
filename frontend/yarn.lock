@@ -12195,10 +12195,10 @@ uuid@^9.0.0:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-9.0.0.tgz#592f550650024a38ceb0c562f2f6aa435761efb5"
   integrity sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==
 
-v-annotator@0.1.30:
-  version "0.1.30"
-  resolved "https://registry.yarnpkg.com/v-annotator/-/v-annotator-0.1.30.tgz#930d7b2bd6d16520c8567a3bb6454c741a4764d5"
-  integrity sha512-PDfbiC1bfr5sJ+pSHrC0dwG82rJ5z/ObBB0x4zVXSYW4AD6JeNWgk9DkchM0rSBMuvr+whP6IEvDY5/XsrZmfw==
+v-annotator@^0.1.31:
+  version "0.1.31"
+  resolved "https://registry.yarnpkg.com/v-annotator/-/v-annotator-0.1.31.tgz#bbe990ceca8dbd59a203a882be09bdd509072f36"
+  integrity sha512-4f3wcJ3rbpePOuIoa51Chqfv4pIJ4htjvmui88ikUvjEq6ogLWK/9DCTWOnIOnW33nhbmO4KZPTmu7hXYEQNmg==
   dependencies:
     "@flatten-js/interval-tree" "^1.0.14"
     core-js "^3.6.5"
