@@ -15,8 +15,8 @@
     </template>
     <template #content>
       <v-row v-if="useRating">
-        <v-col v-for="(rating, i) in ratings" :key="i">
-          {{ ratingType(rating.type).text }}
+        <v-col v-for="(rating, i) in ratings" :key="i" cols="12">
+          <span class="text-h5">{{ ratingType(rating.type).text }}</span>
           <v-slider
             v-model="ratingScores[i]"
             :min="ratingType(rating.type).min"
