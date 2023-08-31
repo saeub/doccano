@@ -1,5 +1,5 @@
 <template>
-  <form-create v-slot="slotProps" v-bind.sync="editedItem" :items="items">
+  <form-create v-slot="slotProps" v-bind.sync="editedItem" :items="items" :type="type">
     <v-btn :disabled="!slotProps.valid" color="primary" class="text-capitalize" @click="save">
       Save
     </v-btn>
@@ -39,9 +39,14 @@ export default Vue.extend({
         prefixKey: null,
         suffixKey: null,
         backgroundColor: '#73D8FF',
-        textColor: '#ffffff'
+        textColor: '#ffffff',
+        min: 0,
+        max: 0,
+        step: 0,
+        ticks: ''
       } as LabelDTO,
-      items: [] as LabelDTO[]
+      items: [] as LabelDTO[],
+      type: this.$route.query.type
     }
   },
 
