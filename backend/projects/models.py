@@ -1,5 +1,6 @@
 import abc
 import uuid
+from typing import Any, Dict, Optional
 
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -67,7 +68,7 @@ class Project(PolymorphicModel):
         project._state.adding = True
         project.save()
 
-        def bulk_clone(queryset: models.QuerySet, field_initializers: dict = None):
+        def bulk_clone(queryset: models.QuerySet, field_initializers: Optional[Dict[Any, Any]] = None):
             """Clone the queryset.
 
             Args:
@@ -220,6 +221,9 @@ class Member(models.Model):
         if members.filter(user=self.user, project=self.project).exists():
             message = "This user is already assigned to a role in this project."
             raise ValidationError(message)
+
+    def is_admin(self):
+        return self.role.name == settings.ROLE_PROJECT_ADMIN
 
     @property
     def username(self):
